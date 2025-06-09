@@ -26,9 +26,10 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public Produto criar(@RequestBody Produto produto) {
-        return repository.save(produto);
-    }
+public Produto criar(@RequestBody Produto produto) {
+    produto.setId(null); // Força o JPA a tratar como "novo"
+    return repository.save(produto);
+}
 
     @PutMapping("/{id}")
     public ResponseEntity<Produto> atualizar(@PathVariable Long id, @RequestBody Produto novo) {
